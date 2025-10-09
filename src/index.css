@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CipherLoom Design System - Professional Crypto Dashboard */
+
+@layer base {
+  :root {
+    /* Core Brand Colors */
+    --cipher-navy: 220 45% 8%;
+    --cipher-blue: 215 90% 55%;
+    --cipher-cyan: 190 95% 60%;
+    --cipher-purple: 260 85% 65%;
+    
+    /* Status Colors */
+    --profit-green: 145 85% 55%;
+    --loss-red: 355 85% 60%;
+    --warning-amber: 45 95% 65%;
+    --neutral-gray: 220 10% 60%;
+    
+    /* Surface Colors */
+    --surface-dark: 220 25% 6%;
+    --surface-medium: 220 20% 10%;
+    --surface-light: 220 15% 14%;
+    --surface-accent: 220 25% 18%;
+    
+    /* Text Colors */
+    --text-primary: 220 15% 95%;
+    --text-secondary: 220 10% 70%;
+    --text-muted: 220 8% 50%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--cipher-blue)), hsl(var(--cipher-cyan)));
+    --gradient-success: linear-gradient(135deg, hsl(var(--profit-green)), hsl(145 70% 45%));
+    --gradient-danger: linear-gradient(135deg, hsl(var(--loss-red)), hsl(355 70% 50%));
+    --gradient-dark: linear-gradient(135deg, hsl(var(--surface-dark)), hsl(var(--surface-medium)));
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 8px hsl(var(--cipher-navy) / 0.1);
+    --shadow-md: 0 4px 16px hsl(var(--cipher-navy) / 0.15);
+    --shadow-lg: 0 8px 32px hsl(var(--cipher-navy) / 0.2);
+    --shadow-glow: 0 0 24px hsl(var(--cipher-blue) / 0.3);
+    
+    /* Animation */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    /* Default theme mapping */
+    --background: var(--surface-dark);
+    --foreground: var(--text-primary);
+    --card: var(--surface-medium);
+    --card-foreground: var(--text-primary);
+    --popover: var(--surface-medium);
+    --popover-foreground: var(--text-primary);
+    --primary: var(--cipher-blue);
+    --primary-foreground: var(--text-primary);
+    --secondary: var(--surface-light);
+    --secondary-foreground: var(--text-primary);
+    --muted: var(--surface-light);
+    --muted-foreground: var(--text-muted);
+    --accent: var(--cipher-cyan);
+    --accent-foreground: var(--surface-dark);
+    --destructive: var(--loss-red);
+    --destructive-foreground: var(--text-primary);
+    --border: var(--surface-light);
+    --input: var(--surface-light);
+    --ring: var(--cipher-blue);
+    --radius: 0.75rem;
+    
+    /* Sidebar */
+    --sidebar-background: var(--surface-medium);
+    --sidebar-foreground: var(--text-secondary);
+    --sidebar-primary: var(--cipher-blue);
+    --sidebar-primary-foreground: var(--text-primary);
+    --sidebar-accent: var(--surface-light);
+    --sidebar-accent-foreground: var(--text-primary);
+    --sidebar-border: var(--surface-light);
+    --sidebar-ring: var(--cipher-blue);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
