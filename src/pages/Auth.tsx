@@ -36,6 +36,11 @@ export default function Auth() {
 
       if (error) throw error;
 
+      toast({
+        title: "Signed in successfully",
+        description: "Welcome back to CipherLoom!",
+      });
+
       // Check if profile is completed
       const { data: profile } = await supabase
         .from("profiles")
@@ -43,13 +48,8 @@ export default function Auth() {
         .eq("user_id", data.user.id)
         .maybeSingle();
 
-      toast({
-        title: "Signed in successfully",
-        description: "Welcome back to CipherLoom!",
-      });
-
       // Redirect based on profile completion
-      if (profile?.profile_completed) {
+      if (profile && profile.profile_completed) {
         navigate("/");
       } else {
         navigate("/profile");

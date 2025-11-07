@@ -22,12 +22,26 @@ export default function Profile() {
   const [displayName, setDisplayName] = useState("");
   const [bio, setBio] = useState("");
   const [avatarUrl, setAvatarUrl] = useState("");
+  const [countryCode, setCountryCode] = useState("+1");
   const [phone, setPhone] = useState("");
   const [location, setLocation] = useState("");
   const [website, setWebsite] = useState("");
   const [twitter, setTwitter] = useState("");
   const [linkedin, setLinkedin] = useState("");
   const [profileCompleted, setProfileCompleted] = useState(false);
+
+  const countryCodes = [
+    { code: "+1", country: "US/CA" },
+    { code: "+44", country: "UK" },
+    { code: "+91", country: "India" },
+    { code: "+86", country: "China" },
+    { code: "+81", country: "Japan" },
+    { code: "+49", country: "Germany" },
+    { code: "+33", country: "France" },
+    { code: "+39", country: "Italy" },
+    { code: "+34", country: "Spain" },
+    { code: "+61", country: "Australia" },
+  ];
 
   useEffect(() => {
     if (!session) {
@@ -53,7 +67,15 @@ export default function Profile() {
         setDisplayName(data.display_name || "");
         setBio(data.bio || "");
         setAvatarUrl(data.avatar_url || "");
-        setPhone(data.phone || "");
+        // Extract country code and phone number if phone exists
+        const phoneValue = data.phone || "";
+        if (phoneValue && phoneValue.includes(" ")) {
+          const [code, ...rest] = phoneValue.split(" ");
+          setCountryCode(code);
+          setPhone(rest.join(" "));
+        } else {
+          setPhone(phoneValue);
+        }
         setLocation(data.location || "");
         setWebsite(data.website || "");
         setTwitter(data.twitter || "");
@@ -127,6 +149,8 @@ export default function Profile() {
         .eq("user_id", user?.id)
         .maybeSingle();
 
+      const fullPhone = phone ? `${countryCode} ${phone}` : "";
+      
       if (existingProfile) {
         // Update existing profile
         const { error } = await supabase
@@ -135,7 +159,7 @@ export default function Profile() {
             display_name: displayName,
             bio: bio,
             avatar_url: avatarUrl,
-            phone: phone,
+            phone: fullPhone,
             location: location,
             website: website,
             twitter: twitter,
@@ -155,7 +179,7 @@ export default function Profile() {
             display_name: displayName,
             bio: bio,
             avatar_url: avatarUrl,
-            phone: phone,
+            phone: fullPhone,
             location: location,
             website: website,
             twitter: twitter,
@@ -280,13 +304,26 @@ export default function Profile() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="phone">Phone Number</Label>
-                    <Input
-                      id="phone"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      placeholder="+1 (555) 000-0000"
-                      className="bg-surface-light border-border"
-                    />
+                    <div className="flex gap-2">
+                      <select
+                        value={countryCode}
+                        onChange={(e) => setCountryCode(e.target.value)}
+                        className="w-24 px-3 py-2 bg-surface-light border border-border rounded-md text-foreground"
+                      >
+                        {countryCodes.map((item) => (
+                          <option key={item.code} value={item.code}>
+                            {item.code}
+                          </option>
+                        ))}
+                      </select>
+                      <Input
+                        id="phone"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        placeholder="555 000 0000"
+                        className="flex-1 bg-surface-light border-border"
+                      />
+                    </div>
                   </div>
 
                   <div className="space-y-2">
