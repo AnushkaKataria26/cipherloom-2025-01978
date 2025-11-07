@@ -28,6 +28,7 @@ export default function Converter() {
     { code: "EUR", symbol: "€" },
     { code: "GBP", symbol: "£" },
     { code: "JPY", symbol: "¥" },
+    { code: "INR", symbol: "₹" },
     { code: "AUD", symbol: "A$" },
     { code: "CAD", symbol: "C$" },
   ];
@@ -37,6 +38,7 @@ export default function Converter() {
     EUR: 0.92,
     GBP: 0.79,
     JPY: 149.5,
+    INR: 84.2,
     AUD: 1.52,
     CAD: 1.36,
   };
