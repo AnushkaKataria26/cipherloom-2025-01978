@@ -14,7 +14,192 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      portfolio_holdings: {
+        Row: {
+          amount: number
+          coin_name: string
+          coin_symbol: string
+          created_at: string
+          id: string
+          purchase_date: string
+          purchase_price: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          coin_name: string
+          coin_symbol: string
+          created_at?: string
+          id?: string
+          purchase_date?: string
+          purchase_price: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          coin_name?: string
+          coin_symbol?: string
+          created_at?: string
+          id?: string
+          purchase_date?: string
+          purchase_price?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      price_alerts: {
+        Row: {
+          alert_type: string
+          coin_name: string
+          coin_symbol: string
+          created_at: string
+          id: string
+          is_active: boolean
+          target_value: number
+          triggered_at: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          alert_type: string
+          coin_name: string
+          coin_symbol: string
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          target_value: number
+          triggered_at?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          alert_type?: string
+          coin_name?: string
+          coin_symbol?: string
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          target_value?: number
+          triggered_at?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          bio: string | null
+          created_at: string
+          display_name: string | null
+          id: string
+          linkedin: string | null
+          location: string | null
+          phone: string | null
+          profile_completed: boolean
+          twitter: string | null
+          updated_at: string
+          user_id: string
+          website: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          display_name?: string | null
+          id: string
+          linkedin?: string | null
+          location?: string | null
+          phone?: string | null
+          profile_completed?: boolean
+          twitter?: string | null
+          updated_at?: string
+          user_id: string
+          website?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          linkedin?: string | null
+          location?: string | null
+          phone?: string | null
+          profile_completed?: boolean
+          twitter?: string | null
+          updated_at?: string
+          user_id?: string
+          website?: string | null
+        }
+        Relationships: []
+      }
+      user_settings: {
+        Row: {
+          created_at: string
+          default_currency: string
+          email_notifications: boolean
+          id: string
+          price_alert_notifications: boolean
+          push_notifications: boolean
+          theme_preference: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          default_currency?: string
+          email_notifications?: boolean
+          id?: string
+          price_alert_notifications?: boolean
+          push_notifications?: boolean
+          theme_preference?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          default_currency?: string
+          email_notifications?: boolean
+          id?: string
+          price_alert_notifications?: boolean
+          push_notifications?: boolean
+          theme_preference?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      watchlist: {
+        Row: {
+          coin_id: string
+          coin_name: string
+          coin_symbol: string
+          created_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          coin_id: string
+          coin_name: string
+          coin_symbol: string
+          created_at?: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          coin_id?: string
+          coin_name?: string
+          coin_symbol?: string
+          created_at?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
