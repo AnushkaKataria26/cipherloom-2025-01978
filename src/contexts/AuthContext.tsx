@@ -3,6 +3,8 @@ import { User, Session } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
 
+// Authentication context for managing user session
+
 interface AuthContextType {
   user: User | null;
   session: Session | null;
